@@ -27,9 +27,9 @@ const offerings = [
     title: "Multi-Agent AI Systems",
     features: [
       "Custom AI agents built for commodity-specific research",
-      "Agents automate tasks like PDF parsing, price tracking, news summarization",
-      "Examples: Urea quote tracker, Rice market agent, Argus parser for fertilizer pricing",
-      "Replaces PDFs, emails, and fragmented workflows",
+      "Agents automate research like news parsing, creating summaries from texts, price movements earnings calls",
+      "Agents which provide financial modelling and quant strategy solution based on wired data back to quant researcher",
+      "Examples: quant strategy agent for crypto and commodity trading",
     ],
   },
 ];
