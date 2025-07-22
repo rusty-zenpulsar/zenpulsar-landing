@@ -12,11 +12,13 @@ import { CTA } from "@/components/sections/cta";
 import { SectionDivider } from "@/components/common/section-divider";
 import { FloatingDemoButton } from "@/components/common/floating-demo-button";
 import { FormModal } from "@/components/forms/form-modal";
-import { DemoFormData, AccessFormData } from "@/lib/types";
+import { SuccessModal } from "@/components/forms/success-modal";
+import { DemoFormData } from "@/lib/types";
 
 export default function HomePage() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-  const [isAccessModalOpen, setIsAccessModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState<string>("");
 
   const handleDemoSubmit = async (data: DemoFormData) => {
     try {
@@ -32,33 +34,13 @@ export default function HomePage() {
         throw new Error("Failed to submit demo request");
       }
 
-      alert("Demo request sent successfully!");
+      // Store email and show success modal
+      setSubmittedEmail(data.email);
       setIsDemoModalOpen(false);
+      setIsSuccessModalOpen(true);
     } catch (error) {
       console.error("Demo submission error:", error);
       alert("Failed to send demo request. Please try again.");
-    }
-  };
-
-  const handleAccessSubmit = async (data: AccessFormData) => {
-    try {
-      const response = await fetch("/api/access", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit access request");
-      }
-
-      alert("Access request sent successfully!");
-      setIsAccessModalOpen(false);
-    } catch (error) {
-      console.error("Access submission error:", error);
-      alert("Failed to send access request. Please try again.");
     }
   };
 
@@ -83,7 +65,7 @@ export default function HomePage() {
       <SectionDivider />
       <CTA onDemoClick={() => setIsDemoModalOpen(true)} />
       
-      <Footer onAccessClick={() => setIsAccessModalOpen(true)} />
+      <Footer onDemoClick={() => setIsDemoModalOpen(true)} />
       
       <FloatingDemoButton onClick={() => setIsDemoModalOpen(true)} />
 
@@ -94,11 +76,10 @@ export default function HomePage() {
         onDemoSubmit={handleDemoSubmit}
       />
 
-      <FormModal
-        isOpen={isAccessModalOpen}
-        onClose={() => setIsAccessModalOpen(false)}
-        type="access"
-        onAccessSubmit={handleAccessSubmit}
+      <SuccessModal
+        isOpen={isSuccessModalOpen}
+        onClose={() => setIsSuccessModalOpen(false)}
+        userEmail={submittedEmail}
       />
     </main>
   );

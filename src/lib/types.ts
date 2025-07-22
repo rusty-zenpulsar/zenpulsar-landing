@@ -7,13 +7,7 @@ export interface DemoFormData {
   message?: string;
 }
 
-export interface AccessFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  company: string;
-  interest?: string;
-}
+
 
 // Slack message types
 export interface SlackMessage {

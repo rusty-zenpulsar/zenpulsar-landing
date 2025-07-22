@@ -7,7 +7,7 @@ A modern Next.js application for ZENPULSAR's commodities intelligence platform, 
 - **Modern Tech Stack**: Next.js 15+ with App Router, TypeScript, and Tailwind CSS v4
 - **Component Library**: shadcn/ui components with Radix UI primitives
 - **MDX Support**: Rich content management with Markdown and JSX
-- **Form Integration**: Direct Slack webhook integration for lead capture
+- **Form Integration**: Slack App API integration for reliable lead capture
 - **Performance Optimized**: Image optimization, font optimization, and lazy loading
 - **SEO Ready**: Comprehensive metadata and Open Graph support
 - **Responsive Design**: Mobile-first design with smooth animations
@@ -46,8 +46,15 @@ A modern Next.js application for ZENPULSAR's commodities intelligence platform, 
    
    Update `.dev.vars` with your actual values:
    ```env
-   SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
-   SLACK_CHANNEL=#general
+   # Slack App Integration
+   SLACK_BOT_TOKEN=xoxb-your-bot-token
+   SLACK_CHANNEL_ID=C1234567890
+   SLACK_CLIENT_ID=your-client-id
+   SLACK_CLIENT_SECRET=your-client-secret
+   SLACK_SIGNING_SECRET=your-signing-secret
+   SLACK_VERIFICATION_TOKEN=your-verification-token
+   
+   # Other services
    RESEND_API_KEY=your_resend_api_key
    NEXT_PUBLIC_SITE_URL=https://zenpulsar.com
    ```
@@ -157,10 +164,19 @@ All brand guidelines are codified in `/src/lib/brand.ts`:
 
 ### Slack Integration
 
-1. Create a Slack app at [api.slack.com](https://api.slack.com/apps)
-2. Enable Incoming Webhooks
-3. Create a webhook for your desired channel
-4. Copy the webhook URL to your `.dev.vars`
+The project now uses Slack App API instead of webhooks for better functionality and reliability.
+
+1. **Create a Slack App** at [api.slack.com](https://api.slack.com/apps)
+2. **Configure OAuth & Permissions**:
+   - Add required bot token scopes: `chat:write`, `channels:read`, `groups:read`
+   - Install the app to your workspace to get the Bot User OAuth Token
+3. **Get your credentials**:
+   - **Bot Token**: Found in "OAuth & Permissions" (starts with `xoxb-`)
+   - **Channel ID**: Right-click your target channel → "Copy link" → extract ID from URL
+   - **Client ID & Secret**: Found in "Basic Information" → "App Credentials"
+   - **Signing Secret**: Found in "Basic Information" → "App Credentials"
+4. **Update `.dev.vars`** with your actual values
+5. **Invite the bot** to your target channel: `/invite @your-bot-name`
 
 ### Cloudflare Workers Deployment
 
@@ -238,8 +254,14 @@ The deployment process:
 Make sure to set these in your production environment:
 
 ```env
-SLACK_WEBHOOK_URL=your_production_webhook
-SLACK_CHANNEL=#your-channel
+# Slack App Integration
+SLACK_BOT_TOKEN=xoxb-your-production-bot-token
+SLACK_CHANNEL_ID=C1234567890
+SLACK_CLIENT_ID=your-client-id
+SLACK_CLIENT_SECRET=your-client-secret
+SLACK_SIGNING_SECRET=your-signing-secret
+
+# Other services
 RESEND_API_KEY=your_resend_key
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NODE_ENV=production

@@ -1,25 +1,33 @@
-import { DemoFormData, AccessFormData, SlackMessage } from "./types";
+import { WebClient } from '@slack/web-api';
+import { DemoFormData, SlackMessage } from "./types";
+
+// Initialize Slack Web API client
+const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 export async function sendToSlack(message: SlackMessage): Promise<void> {
-  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  const channelId = process.env.SLACK_CHANNEL_ID;
   
-  if (!webhookUrl) {
-    throw new Error("SLACK_WEBHOOK_URL environment variable is not set");
+  if (!process.env.SLACK_BOT_TOKEN) {
+    throw new Error("SLACK_BOT_TOKEN environment variable is not set");
   }
 
-  const response = await fetch(webhookUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      channel: process.env.SLACK_CHANNEL || "#general",
-      ...message,
-    }),
-  });
+  if (!channelId) {
+    throw new Error("SLACK_CHANNEL_ID environment variable is not set");
+  }
 
-  if (!response.ok) {
-    throw new Error(`Failed to send to Slack: ${response.statusText}`);
+  try {
+    const result = await slack.chat.postMessage({
+      channel: channelId,
+      text: message.text,
+      blocks: message.blocks,
+    });
+
+    if (!result.ok) {
+      throw new Error(`Failed to send to Slack: ${result.error}`);
+    }
+  } catch (error) {
+    console.error('Slack API error:', error);
+    throw new Error(`Failed to send to Slack: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
 
@@ -70,49 +78,3 @@ export function createDemoRequestMessage(data: DemoFormData): SlackMessage {
   };
 }
 
-export function createAccessRequestMessage(data: AccessFormData): SlackMessage {
-  const fullName = `${data.firstName} ${data.lastName}`;
-  
-  return {
-    text: `🚀 New Access Request from ${fullName}`,
-    blocks: [
-      {
-        type: "header",
-        text: {
-          type: "plain_text",
-          text: "🚀 New Access Request - ZENPULSAR",
-        },
-      },
-      {
-        type: "section",
-        fields: [
-          {
-            type: "mrkdwn",
-            text: `*Name:* ${fullName}`,
-          },
-          {
-            type: "mrkdwn",
-            text: `*Email:* ${data.email}`,
-          },
-          {
-            type: "mrkdwn",
-            text: `*Company:* ${data.company}`,
-          },
-          {
-            type: "mrkdwn",
-            text: `*Product Interest:* ${data.interest || "Not specified"}`,
-          },
-        ],
-      },
-      {
-        type: "context",
-        elements: [
-          {
-            type: "mrkdwn",
-            text: `Submitted on ${new Date().toLocaleString()}`,
-          },
-        ],
-      },
-    ],
-  };
-} 

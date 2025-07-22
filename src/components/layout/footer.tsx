@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/constants";
 
 interface FooterProps {
-  onAccessClick: () => void;
+  onDemoClick: () => void;
 }
 
-export function Footer({ onAccessClick }: FooterProps) {
+export function Footer({ onDemoClick }: FooterProps) {
   return (
     <footer className="py-20 px-6 bg-white border-t border-zp-border">
       <div className="max-w-6xl mx-auto">
@@ -55,18 +55,18 @@ export function Footer({ onAccessClick }: FooterProps) {
           <div className="text-center">
             <h4 className="text-lg font-semibold text-zp-dark mb-4">Get Started</h4>
             <Button
-              onClick={onAccessClick}
+              onClick={onDemoClick}
               variant="default"
               className="shadow-subtle"
             >
-              Request Access
+              Request Demo
             </Button>
           </div>
         </div>
 
         <div className="text-center pt-8 border-t border-zp-border">
-          <p className="text-sm text-zp-light-gray">
-            © 2025 ZENPULSAR. Professional commodity intelligence solutions.
+          <p className="text-zp-gray text-sm">
+            © {new Date().getFullYear()} ZENPULSAR. All rights reserved.
           </p>
         </div>
       </div>
