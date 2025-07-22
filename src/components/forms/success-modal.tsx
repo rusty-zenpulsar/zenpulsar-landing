@@ -35,7 +35,7 @@ export function SuccessModal({ isOpen, onClose, userEmail }: SuccessModalProps) 
               Your demo request has been sent successfully!
             </p>
             <p className="text-sm text-zp-gray">
-              We've received your information and will get back to you soon.
+              We&apos;ve received your information and will get back to you soon.
             </p>
           </div>
 
@@ -43,7 +43,7 @@ export function SuccessModal({ isOpen, onClose, userEmail }: SuccessModalProps) 
             <div className="flex items-center space-x-3">
               <Clock className="w-5 h-5 text-zp-gray" />
               <div>
-                <p className="text-sm font-medium text-zp-dark">What's next?</p>
+                <p className="text-sm font-medium text-zp-dark">What&apos;s next?</p>
                 <p className="text-xs text-zp-gray">
                   Our team will review your request and contact you within 24 hours
                 </p>
@@ -70,7 +70,7 @@ export function SuccessModal({ isOpen, onClose, userEmail }: SuccessModalProps) 
           {userEmail && (
             <div className="text-center">
               <p className="text-xs text-zp-gray">
-                We'll send updates to <span className="font-medium">{userEmail}</span>
+                We&apos;ll send updates to <span className="font-medium">{userEmail}</span>
               </p>
             </div>
           )}
