@@ -1,0 +1,15 @@
+# Slack App Integration
+SLACK_BOT_TOKEN=
+SLACK_CHANNEL_ID=
+SLACK_CLIENT_ID=
+SLACK_CLIENT_SECRET=
+SLACK_SIGNING_SECRET=
+SLACK_VERIFICATION_TOKEN=
+
+# Email sending via Resend
+RESEND_API_KEY=
+DEMO_REQUEST_EMAIL_TO=info@zenpulsar.com
+DEMO_REQUEST_EMAIL_FROM=no-reply@zenpulsar.com
+
+# Site URL
+NEXT_PUBLIC_SITE_URL=http://localhost:3000

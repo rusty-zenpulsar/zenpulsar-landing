@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendToSlack, createDemoRequestMessage } from "@/lib/slack";
+import { sendDemoRequestEmail } from "@/lib/email";
 import { DemoFormData } from "@/lib/types";
 
 export async function POST(request: NextRequest) {
@@ -19,6 +20,9 @@ export async function POST(request: NextRequest) {
 
     // Send to Slack
     await sendToSlack(slackMessage);
+
+    // Send confirmation email
+    await sendDemoRequestEmail(body);
 
     return NextResponse.json(
       { message: "Demo request sent successfully" },
