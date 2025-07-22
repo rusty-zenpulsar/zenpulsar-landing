@@ -7,6 +7,12 @@
 :root {
 
   /* ZENPULSAR Brand Colors */
+  --zp-fuchsia: rgb(201, 38, 212);     /* #C926D4 */
+  --zp-electric-blue: rgb(41, 38, 207); /* #2926CF */
+  --zp-white: rgb(255, 255, 255);      /* #FFFFFF */
+  --zp-black: rgb(0, 0, 0);            /* #000000 */
+  
+  /* Legacy ZENPULSAR Colors (for backward compatibility) */
   --zp-dark: #1a1a1a;
   --zp-gray: #6b7280;
   --zp-light-gray: #9ca3af;
@@ -193,5 +199,43 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* ZENPULSAR Brand Utility Classes */
+@layer utilities {
+  .text-zp-fuchsia {
+    color: var(--zp-fuchsia);
+  }
+  
+  .text-zp-electric-blue {
+    color: var(--zp-electric-blue);
+  }
+  
+  .bg-zp-fuchsia {
+    background-color: var(--zp-fuchsia);
+  }
+  
+  .bg-zp-electric-blue {
+    background-color: var(--zp-electric-blue);
+  }
+  
+  .border-zp-fuchsia {
+    border-color: var(--zp-fuchsia);
+  }
+  
+  .border-zp-electric-blue {
+    border-color: var(--zp-electric-blue);
+  }
+  
+  .bg-zp-gradient {
+    background: linear-gradient(135deg, var(--zp-fuchsia) 0%, var(--zp-electric-blue) 100%);
+  }
+  
+  .text-zp-gradient {
+    background: linear-gradient(135deg, var(--zp-fuchsia) 0%, var(--zp-electric-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

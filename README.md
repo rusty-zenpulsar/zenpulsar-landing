@@ -85,6 +85,74 @@ src/
 └── emails/              # Email templates
 ```
 
+## 🎨 Brand Guidelines
+
+### Logo Usage
+
+ZENPULSAR logo comes in three variations:
+- **Primary**: Main logo for standard use on light backgrounds
+- **Negative**: White logo for dark backgrounds 
+- **Positive**: High contrast version for maximum visibility
+
+**Logo Guidelines:**
+- Maintain safe area around logo (minimum 1x logo height)
+- Don't change logo colors or proportions
+- Don't distort or rotate the logo
+- Use appropriate version for background contrast
+
+### Typography
+
+- **Primary Typeface**: Texta Alt - Used for all printed and digital artwork
+- **Secondary Typeface**: Century Gothic - For Microsoft Office Suite compatibility
+- **Web Fonts**: Optimized with next/font for performance
+
+### Color Palette
+
+The ZENPULSAR brand uses a distinctive color system:
+
+```css
+/* Primary Colors */
+--zp-fuchsia: rgb(201, 38, 212)     /* #C926D4 */
+--zp-electric-blue: rgb(41, 38, 207) /* #2926CF */
+--zp-white: rgb(255, 255, 255)      /* #FFFFFF */
+--zp-black: rgb(0, 0, 0)            /* #000000 */
+
+/* Brand Gradient */
+background: linear-gradient(135deg, #C926D4 0%, #2926CF 100%);
+```
+
+### Imagery Style
+
+- **Primary Style**: Black and white or mild color photography
+- **Subject Matter**: Architecture and people representing movement and data circulation
+- **Visual Theme**: Clean, modern, data-driven aesthetics
+
+### The Wave Element
+
+A signature visual element representing data waves:
+- **Usage**: Brand identifier across all materials
+- **Styling**: Can be used in brand colors or gradients
+- **Purpose**: Adds organic touch while maintaining professional appearance
+- **Implementation**: Available as SVG component in `/src/components/common/wave.tsx`
+
+```tsx
+import { Wave } from '@/components/common/wave';
+
+// Usage examples
+<Wave variant="gradient" size="lg" />
+<Wave variant="fuchsia" size="md" />
+<Wave variant="white" size="sm" />
+```
+
+### Brand Constants
+
+All brand guidelines are codified in `/src/lib/brand.ts`:
+- Color definitions and CSS variables
+- Typography specifications
+- Logo usage guidelines
+- Imagery guidelines
+- Utility functions for brand assets
+
 ## 🔧 Configuration
 
 ### Slack Integration
@@ -115,6 +183,7 @@ pnpm cf-typegen
 - **Content**: Edit MDX files in `src/content/`
 - **Components**: Modify components in `src/components/`
 - **Site Config**: Update `src/lib/constants.ts`
+- **Brand Assets**: Logo variants available in `/public/brand/`
 
 ## 📝 Content Management
 
