@@ -162,20 +162,25 @@ All brand guidelines are codified in `/src/lib/brand.ts`:
 3. Create a webhook for your desired channel
 4. Copy the webhook URL to your `.dev.vars`
 
-### Cloudflare Deployment
+### Cloudflare Workers Deployment
 
-The project is configured for Cloudflare deployment:
+The project is configured for Cloudflare Workers deployment:
 
 ```bash
-# Deploy to Cloudflare
+# Build for Cloudflare Workers (creates .open-next/worker.js)
+pnpm build
+
+# Deploy to Cloudflare Workers
 pnpm deploy
 
-# Preview deployment
+# Local development with Cloudflare Workers
 pnpm preview
 
 # Generate Cloudflare types
 pnpm cf-typegen
 ```
+
+**Important**: The build process creates the necessary `.open-next/worker.js` file that Cloudflare Workers needs for deployment.
 
 ### Customization
 
@@ -211,16 +216,22 @@ This is **bold** text with a [link](https://example.com).
 
 ## 🚀 Deployment
 
-### Cloudflare (Recommended)
+### Cloudflare Workers (Recommended)
 
-The project is optimized for Cloudflare deployment:
+The project is optimized for Cloudflare Workers deployment:
 
-1. Configure your Cloudflare account
-2. Update `wrangler.jsonc` with your settings
-3. Deploy:
+1. **Configure your Cloudflare account and install Wrangler CLI**
+2. **Login to Cloudflare**: `wrangler login`
+3. **Update `wrangler.jsonc`** with your worker name and settings
+4. **Build and Deploy**:
    ```bash
    pnpm deploy
    ```
+
+The deployment process:
+- Runs `next build` to create the Next.js production build
+- Runs `opennextjs-cloudflare build` to create the Workers-compatible bundle
+- Uses `wrangler deploy` to deploy to Cloudflare Workers
 
 ### Environment Variables
 
@@ -239,11 +250,11 @@ NODE_ENV=production
 ### Available Scripts
 
 - `pnpm dev` - Start development server
-- `pnpm build` - Build for production
+- `pnpm build` - Build for production (includes Cloudflare Workers build)
 - `pnpm start` - Start production server
 - `pnpm lint` - Run ESLint
-- `pnpm deploy` - Deploy to Cloudflare
-- `pnpm preview` - Preview Cloudflare deployment
+- `pnpm deploy` - Build and deploy to Cloudflare Workers
+- `pnpm preview` - Local development with Cloudflare Workers
 - `pnpm cf-typegen` - Generate Cloudflare types
 
 ### Adding Components
