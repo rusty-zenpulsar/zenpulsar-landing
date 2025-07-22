@@ -20,7 +20,6 @@ const offerings = [
       "Real-time political risk signals, not static macro overlays",
       "Built-in taxonomy of triggers: tariffs, export bans, regulatory changes",
       "Use for scenario modeling, volatility forecasts, and regional hedging",
-      "Developed with launch partners including Impro.Ai",
     ],
   },
   {
@@ -29,6 +28,7 @@ const offerings = [
       "Custom AI agents built for commodity-specific research",
       "Agents automate research like news parsing, creating summaries from texts, price movements earnings calls",
       "Agents which provide financial modelling and quant strategy solution based on wired data back to quant researcher",
+      "5x increase of research efficiency of the team without adding headcount",
       "Examples: quant strategy agent for crypto and commodity trading",
     ],
   },
