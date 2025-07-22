@@ -8,6 +8,7 @@ A modern Next.js application for ZENPULSAR's commodities intelligence platform, 
 - **Component Library**: shadcn/ui components with Radix UI primitives
 - **MDX Support**: Rich content management with Markdown and JSX
 - **Form Integration**: Slack App API integration for reliable lead capture
+- **Email Notifications**: Automatic confirmation emails via Resend
 - **Performance Optimized**: Image optimization, font optimization, and lazy loading
 - **SEO Ready**: Comprehensive metadata and Open Graph support
 - **Responsive Design**: Mobile-first design with smooth animations
@@ -54,10 +55,12 @@ A modern Next.js application for ZENPULSAR's commodities intelligence platform, 
    SLACK_SIGNING_SECRET=your-signing-secret
    SLACK_VERIFICATION_TOKEN=your-verification-token
    
-   # Other services
-   RESEND_API_KEY=your_resend_api_key
-   NEXT_PUBLIC_SITE_URL=https://zenpulsar.com
-   ```
+  # Other services
+  RESEND_API_KEY=your_resend_api_key
+  DEMO_REQUEST_EMAIL_TO=info@zenpulsar.com
+  DEMO_REQUEST_EMAIL_FROM=no-reply@zenpulsar.com
+  NEXT_PUBLIC_SITE_URL=https://zenpulsar.com
+  ```
 
 4. **Run the development server**
    ```bash
@@ -263,6 +266,8 @@ SLACK_SIGNING_SECRET=your-signing-secret
 
 # Other services
 RESEND_API_KEY=your_resend_key
+DEMO_REQUEST_EMAIL_TO=info@zenpulsar.com
+DEMO_REQUEST_EMAIL_FROM=no-reply@zenpulsar.com
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NODE_ENV=production
 ```
